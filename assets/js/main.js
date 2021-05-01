@@ -374,23 +374,21 @@
         });
 
     $("form").submit(function (e) {
-    	//var form = $('#form')[0];
-		var requestJson = {
-			'entry.2049620929' : $('#name').val(),
-			'entry.1336604112' : $('#email').val(),
-			'entry.2116249667' : $('#phone').val(),
-			'entry.172839118' : $('#message').val()
-		}
+		var url = "https://docs.google.com/forms/d/e/1FAIpQLSf6mAU8SAdiXLmWriw297-AzOv96Xpfaem0AcNKxTkoKVgZ5g/formResponse?usp=pp_url";
+        url += '&entry.2049620929=' + $('#name').val();
+        url += '&entry.1336604112=' + $('#email').val();
+        url += '&entry.2116249667=' + $('#phone').val();
+        url += '&entry.172839118=' + $('#message').val();
 
 		$.ajax({
-			url: 'https://docs.google.com/forms/d/e/1FAIpQLSf6mAU8SAdiXLmWriw297-AzOv96Xpfaem0AcNKxTkoKVgZ5g/formResponse?usp=pp_url',
-			crossDomain: true,
-			contentType:'application/json',
+			url: url,
+            dataType: 'jsonp',
+            contentType:'text/html',
 			headers: {
 				'Access-Control-Allow-Origin': '*',
 			},
+            crossDomain: true,
 			type: 'GET',
-			data: requestJson,
 			success: function (data) {
 				console.log("success");
 				console.log(data);
